@@ -1,0 +1,6 @@
+@import "tailwindcss";
+
+
+.active{
+  @apply bg-gray-500 rounded-2xl p-3 m-2
+}
