@@ -51,8 +51,8 @@ const Navbar = () => {
               </li>
             </>
           ) : (
-            <li>
-              <NavLink to="/profile">Profile</NavLink> {/* Replace with a profile link */}
+            <li className="flex gap-2 items-center">
+              <NavLink to="/profile" >Profile</NavLink> 
               <button onClick={handleLogout}>Logout</button>
             </li>
           )}
