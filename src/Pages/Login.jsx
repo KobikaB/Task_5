@@ -35,13 +35,11 @@ const Login = () => {
       setSubmitted(true);
       toast.success("Login successful");
 
-      
       localStorage.setItem("userData", JSON.stringify(formData));
 
-      
       setTimeout(() => {
         navigate("/");
-      }, [1500]); 
+      }, [1500]);
     }
   };
 
@@ -71,7 +69,9 @@ const Login = () => {
                   setFormData({ ...formData, name: e.target.value })
                 }
               />
-              {nameError && <p className="text-red-600 text-sm mt-1">{nameError}</p>}
+              {nameError && (
+                <p className="text-red-600 text-sm mt-1">{nameError}</p>
+              )}
             </div>
 
             <div className="pl-4 ml-3 flex flex-col justify-center">

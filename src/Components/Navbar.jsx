@@ -5,7 +5,6 @@ import logo1 from "../Images/logo1.webp";
 const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  
   useEffect(() => {
     const userData = localStorage.getItem("userData");
     if (userData) {
@@ -21,7 +20,11 @@ const Navbar = () => {
   return (
     <div className="bg-black h-20 fixed top-0 w-screen z-50">
       <div className="flex items-center justify-between px-4 md:px-10 h-full">
-        <img src={logo1} alt="logo" className="h-16 rounded-full bg-amber-200" />
+        <img
+          src={logo1}
+          alt="logo"
+          className="h-16 rounded-full bg-amber-200"
+        />
 
         {/* Desktop Menu */}
         <ul className="hidden md:flex items-center gap-6 text-2xl text-white">
@@ -39,7 +42,6 @@ const Navbar = () => {
           </li>
         </ul>
 
-     
         <ul className="hidden md:flex gap-6 text-2xl text-white">
           {!isLoggedIn ? (
             <>
@@ -51,11 +53,11 @@ const Navbar = () => {
               </li>
             </>
           ) : (
-            <div >
-            <li className="flex gap-4 items-center">
-              <NavLink to="/profile" >Profile</NavLink> 
-              <button onClick={handleLogout}>Logout</button>
-            </li>
+            <div>
+              <li className="flex gap-4 items-center">
+                <NavLink to="/profile">Profile</NavLink>
+                <button onClick={handleLogout}>Logout</button>
+              </li>
             </div>
           )}
         </ul>

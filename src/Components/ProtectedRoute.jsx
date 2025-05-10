@@ -1,24 +1,16 @@
-import React from 'react'
-import { Outlet,Navigate } from 'react-router';
-
+import React from "react";
+import { Outlet, Navigate } from "react-router";
 
 const authUser = () => {
-    const user ={login : true}; 
+  const user = { login: true };
 
-
-    return user && user.login
+  return user && user.login;
 };
 
-
-
-
 const Protect = () => {
+  const isAuth = authUser();
+  return isAuth ? <Outlet /> : <Navigate to="/login" replace />;
+  return <div></div>;
+};
 
-    const isAuth = authUser();
-    return isAuth? <Outlet /> : <Navigate to="/login" replace />;
-  return (
-    <div></div>
-  )
-}
-
-export default Protect
+export default Protect;
