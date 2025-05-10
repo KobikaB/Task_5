@@ -2,13 +2,18 @@ import React from "react";
 import image1 from "../Images/i1.jpg";
 import { Link } from "react-router";
 import { useEffect } from "react";
-
+import { useNavigate } from "react-router";
 
 const Home = () => {
 
-  
+  const navigate = useNavigate();
 
-  
+  useEffect(() => {
+    const userData = localStorage.getItem("userData");
+    if (!userData) {
+      navigate("/login");
+    }
+  }, [navigate]);
   return (
     <>
       <div>

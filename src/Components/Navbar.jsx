@@ -51,10 +51,12 @@ const Navbar = () => {
               </li>
             </>
           ) : (
-            <li className="flex gap-2 items-center">
+            <div >
+            <li className="flex gap-4 items-center">
               <NavLink to="/profile" >Profile</NavLink> 
               <button onClick={handleLogout}>Logout</button>
             </li>
+            </div>
           )}
         </ul>
       </div>
