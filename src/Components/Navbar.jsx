@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, NavLink } from "react-router"; // Corrected import
+import { Link, NavLink } from "react-router"; 
 import logo1 from "../Images/logo1.webp";
 
 const Navbar = () => {
@@ -26,7 +26,7 @@ const Navbar = () => {
           className="h-16 rounded-full bg-amber-200"
         />
 
-        {/* Desktop Menu */}
+        
         <ul className="hidden md:flex items-center gap-6 text-2xl text-white">
           <li>
             <Link to="/">Home</Link>
@@ -42,7 +42,7 @@ const Navbar = () => {
           </li>
         </ul>
 
-        <ul className="hidden md:flex gap-6 text-2xl text-white">
+        <ul className="flex gap-6 text-2xl text-white">
           {!isLoggedIn ? (
             <>
               <li>

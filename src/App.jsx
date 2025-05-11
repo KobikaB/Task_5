@@ -1,6 +1,6 @@
 import React, { lazy, Suspense } from "react";
 import { createBrowserRouter, RouterProvider, Route } from "react-router";
-import { createRoutesFromElements } from "react-router"; 
+import { createRoutesFromElements } from "react-router";
 import NotFound from "./Pages/NotFound";
 import Rootlayout from "./Layout/Rootlayout";
 import Protect from "./Components/ProtectedRoute";
