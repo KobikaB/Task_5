@@ -55,8 +55,8 @@ const Navbar = () => {
           ) : (
             <div>
               <li className="flex gap-4 items-center">
-                <NavLink to="/profile">Profile</NavLink>
-                <button onClick={handleLogout}>Logout</button>
+                <NavLink to="profile" className=" hover:bg-gray-600 p-2 rounded-xl">Profile</NavLink>
+                <button onClick={handleLogout} className=" hover:bg-gray-600 p-2 rounded-xl">Logout</button>
               </li>
             </div>
           )}

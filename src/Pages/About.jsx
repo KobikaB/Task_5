@@ -10,8 +10,8 @@ const About = () => {
         </h1>
 
         <p className="text-lg  text-gray-700 mb-6">
-          <strong>FlavorMate</strong> is your personal kitchen. It helps you explore and cook
-          tasty meals from all over the world, with a focus on traditional <strong>Canadian recipes</strong> like
+          <span className="font-bold">FlavorMate</span> is your personal kitchen. It helps you explore and cook
+          tasty meals from all over the world, with a focus on traditional <span className="font-bold">Canadian recipes</span> like
           <span className="text-blue-500 font-medium"> Poutine</span>, <span className="text-blue-500 font-medium">Butter Tarts</span>, and <span className="text-blue-500 font-medium">Nanaimo Bars</span>.
         </p>
 
