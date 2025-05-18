@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate, Link } from "react-router";
 import { toast, ToastContainer } from "react-toastify";
 
 const Login = () => {
   const navigate = useNavigate();
-  const [submitted, setSubmitted] = useState(false);
+
   const [nameError, setNameError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [formData, setFormData] = useState({
@@ -12,13 +12,21 @@ const Login = () => {
     password: "",
   });
 
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    setNameError("");
-    setPasswordError("");
-    setSubmitted(false);
 
     let isValid = true;
+
+    const storedData = JSON.parse(localStorage.getItem("userData"));
+
+    if (!storedData) {
+      toast.error("No user registered!");
+      return;
+    }
 
     if (formData.name.trim() === "") {
       setNameError("Name is required");
@@ -31,11 +39,18 @@ const Login = () => {
       isValid = false;
     }
 
-    if (isValid) {
-      setSubmitted(true);
-      toast.success("Login successful");
+    if (
+      isValid &&
+      (formData.name !== storedData.Fname ||
+        formData.password !== storedData.password)
+    ) {
+      toast.error("No user registered!");
+      return;
+    }
 
-      localStorage.setItem("userData", JSON.stringify(formData));
+    if (isValid) {
+      localStorage.setItem("isLoggedIn", "true");
+      toast.success("Login successful");
 
       setTimeout(() => {
         navigate("/");
@@ -44,66 +59,73 @@ const Login = () => {
   };
 
   return (
-    <div className="w-screen h-screen flex">
-      <div className="w-1/2 bg-gray-300 flex justify-center items-center min-h-screen">
-        <div>
+    <div className="w-screen h-screen flex flex-col  md:flex-row ">
+      <div className="w-full md:w-1/2 h-full bg-gray-400 flex justify-center items-center bg-cover bg-center">
+        <div className="bg-white w-7/12 md:w-6/12  p-6 rounded-3xl shadow-2xl h-auto max-h-full">
+          <h1 className="text-center  text-2xl font-bold">Login</h1>
+          <img
+            src="/src/Images/avat.png"
+            alt="logo"
+            className="w-20 h-20 mx-auto mt-1"
+          />
+
           <form
             onSubmit={handleSubmit}
-            className="bg-white rounded-2xl shadow-md w-100"
+            className="flex flex-col items-center gap-3"
           >
-            <h1 className="text-center mt-5 text-2xl font-bold">Login</h1>
-            <img
-              src="/src/Images/avat.png"
-              alt="logo"
-              className="w-20 h-20 mx-auto"
+            <label className="block  w-full">Name</label>
+            <input
+              type="text"
+              name="name"
+              placeholder="Enter your name"
+              value={formData.name}
+              onChange={handleChange}
+              pattern="[A-Za-z]+"
+              title="Only letters allowed"
+              className="p-2 border-2  rounded block w-full "
+              required
             />
 
-            <div className="pl-4 ml-3 flex flex-col justify-center">
-              <label className="mb-5">Name</label>
-              <input
-                type="text"
-                placeholder="Enter your name"
-                className="bg-white w-[80%] border-2 border-l-black h-12 pl-4"
-                value={formData.name}
-                onChange={(e) =>
-                  setFormData({ ...formData, name: e.target.value })
-                }
-              />
-              {nameError && (
+            {nameError && (
                 <p className="text-red-600 text-sm mt-1">{nameError}</p>
               )}
-            </div>
 
-            <div className="pl-4 ml-3 flex flex-col justify-center">
-              <label className="pb-5">Password</label>
-              <input
-                type="password"
-                placeholder="Enter your password"
-                className="bg-white w-[80%] h-12 pl-4 border-2 border-l-black"
-                value={formData.password}
-                onChange={(e) =>
-                  setFormData({ ...formData, password: e.target.value })
-                }
-              />
-              {passwordError && (
+            <label className="block w-full">Password</label>
+            <input
+              type="password"
+              name="password"
+              placeholder="Enter your password"
+              pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+              title="Must contain at least 8 characters, one uppercase, one lowercase, one number and one special character"
+              className="p-2 border-2 rounded block w-full"
+              value={formData.password}
+              onChange={handleChange}
+            />
+
+            {passwordError && (
                 <p className="text-red-600 text-sm mt-1">{passwordError}</p>
               )}
-            </div>
 
-            <div className="flex justify-center">
+            <div className="flex justify-center ">
               <button
-                className="p-3 mt-15 m-4 bg-gray-300 rounded-xl hover:bg-gray-500 text-cyan-900"
+                className="p-3 my-2 bg-gray-300 rounded-xl hover:bg-gray-500 text-cyan-900"
                 type="submit"
               >
                 Submit
               </button>
             </div>
           </form>
+          <p className=" text-center ">
+            If you don't have an account?
+            <Link to="/register" className="text-blue-600 hover:underline ml-1">
+              Register
+            </Link>
+          </p>
         </div>
       </div>
 
       <div
-        className="w-1/2 h-full bg-cover bg-center"
+        className="hidden md:block md:w-1/2 h-full bg-cover bg-center"
         style={{ backgroundImage: "url('./src/Images/i5.jpg')" }}
       ></div>
 

@@ -1,52 +1,36 @@
 import React from "react";
-import { Link, Outlet } from "react-router";
+import { Link } from "react-router";
 
 const Menu = () => {
   return (
-    <div className=" h-screen w-screen flex flex-col bg-gray-200 bg-fixed">
-     
-      <div className="mt-40 font-bold text-4xl text-white bg-blue-400 p-6 rounded-xl shadow-md w-1/2 mx-auto text-center">
-        Menu
+    <div className="min-h-screen bg-gradient-to-b from-blue-300 to-blue-400 flex flex-col items-center mt-15 py-10 px-4">
+      <img
+        src="./src/images/menubg.jpg"
+        alt=" food"
+        className="rounded-xl shadow-lg object-cover w-full max-w-5xl h-48 sm:h-72 md:h-96"
+      />
+
+      <div className="text-center mb-10 px-2 sm:px-6">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-4 ">
+          Welcome to Our Menu Page
+        </h1>
+        <p className="text-white sm:text-lg max-w-2xl mx-auto ">
+          Explore our carefully curated menus that offer a wide variety of
+          delicious options. Click on "All Menu Details" to dive deep into our
+          selections and find your perfect dish!
+        </p>
       </div>
 
-      
-      <ul className="flex flex-col items-center mt-8 space-y-4 font-bold">
-        <li className="w-full max-w-md px-4">
+      <ul className="flex flex-col items-center font-semibold mb-10 w-full max-w-lg px-4">
+        <li>
           <Link
             to="1"
-            className="block text-blue-700 hover:text-white hover:bg-blue-500 p-4 rounded-lg shadow-lg "
+            className="block w-full bg-white text-blue-500 hover:text-white hover:bg-blue-600 transition-colors duration-300 p-4 sm:p-5 rounded-xl shadow-md text-center text-lg sm:text-xl font-semibold"
           >
-            Menu 1
-          </Link>
-        </li>
-        <li className="w-full max-w-md px-4">
-          <Link
-            to="2"
-            className="block text-blue-700 hover:text-white hover:bg-blue-500 p-4 rounded-lg shadow-lg "
-          >
-            Menu 2
-          </Link>
-        </li>
-        <li className="w-full max-w-md px-4">
-          <Link
-            to="3"
-            className="block text-blue-700 hover:text-white hover:bg-blue-500 p-4 rounded-lg shadow-lg "
-          >
-            Menu 3
-          </Link>
-        </li>
-        <li className="w-full max-w-md px-4">
-          <Link
-            to="4"
-            className="block text-blue-700 hover:text-white hover:bg-blue-500 p-4 rounded-lg shadow-lg "
-          >
-            Menu 4
+            All Menu Details
           </Link>
         </li>
       </ul>
-
-     
-      <Outlet />
     </div>
   );
 };

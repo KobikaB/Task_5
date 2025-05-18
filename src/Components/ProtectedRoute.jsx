@@ -1,16 +1,12 @@
 import React from "react";
-import { Outlet, Navigate } from "react-router";
+import { Navigate, Outlet } from "react-router";
 
-const authUser = () => {
-  const user = { login: true };
+const ProtectedRoute = ({ isLoggedIn }) => {
+  if (!isLoggedIn) {
+    return <Navigate to="/login"  replace />;
+  }
 
-  return user && user.login;
+  return <Outlet />;
 };
 
-const Protect = () => {
-  const isAuth = authUser();
-  return isAuth ? <Outlet /> : <Navigate to="/login" replace />;
-  return <div></div>;
-};
-
-export default Protect;
+export default ProtectedRoute;

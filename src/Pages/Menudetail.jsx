@@ -1,44 +1,30 @@
 import React, { useEffect, useState } from "react";
-import Mealdetailp from "./Mealdetailp";
-import { useParams } from "react-router";
 
-const Menudetail = () => {
-  const { id } = useParams();
-  const [menuData, setMenuData] = useState([]);
-  const [loading, setLoading] = useState(true);
+import MealModal from "./MealModal";
+import Mealdetailp from "./Mealdetailp";
+
+const MenuDetail = () => {
+  const [meals, setMeals] = useState([]);
+  const [selectedMeal, setSelectedMeal] = useState(null);
 
   useEffect(() => {
     fetch("https://www.themealdb.com/api/json/v1/1/filter.php?a=Canadian")
-      .then((response) => response.json())
-      .then((data) => {
-        setMenuData(data.meals);
-        console.log(data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching menu data:", error);
-        setLoading(false);
-      });
+      .then((res) => res.json())
+      .then((data) => setMeals(data.meals));
   }, []);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (!menuData) {
-    return <div>No meals found.</div>;
-  }
-
   return (
-    <div className="w-screen bg-blue-200">
-      
-      <div className="flex flex-wrap justify-around mt-[5%]">
-        {menuData.map((meal) => (
-          <Mealdetailp key={meal.idMeal} meal={meal} />
+    <div className="min-h-screen bg-gradient-to-br from-blue-100 to-white p-6">
+      <h1 className="text-4xl font-bold text-center mb-8">All Menu Items</h1>
+      <div className="flex flex-wrap justify-center gap-6">
+        {meals.map((meal) => (
+          <Mealdetailp key={meal.idMeal} meal={meal} onView={setSelectedMeal} />
         ))}
       </div>
+
+      <MealModal meal={selectedMeal} onClose={() => setSelectedMeal(null)} />
     </div>
   );
 };
 
-export default Menudetail;
+export default MenuDetail;

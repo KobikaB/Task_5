@@ -1,11 +1,11 @@
 import React from "react";
-import Navbar from "../Components/Navbar";
+import Navbar from "../components/Navbar";
 import { Outlet } from "react-router";
 
-const Rootlayout = () => {
+const Rootlayout = ({isLoggedIn}) => {
   return (
     <div>
-      <Navbar isLogin={true} />
+      <Navbar isLoggedIn={isLoggedIn} />
       <Outlet />
     </div>
   );

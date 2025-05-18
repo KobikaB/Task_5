@@ -1,4 +1,3 @@
-
 import React from "react";
 
 const About = () => {
@@ -10,23 +9,27 @@ const About = () => {
         </h1>
 
         <p className="text-lg  text-gray-700 mb-6">
-          <span className="font-bold">FlavorMate</span> is your personal kitchen. It helps you explore and cook
-          tasty meals from all over the world, with a focus on traditional <span className="font-bold">Canadian recipes</span> like
-          <span className="text-blue-500 font-medium"> Poutine</span>, <span className="text-blue-500 font-medium">Butter Tarts</span>, and <span className="text-blue-500 font-medium">Nanaimo Bars</span>.
+          <span className="font-bold">FlavorMate</span> is your personal
+          kitchen. It helps you explore and cook tasty meals from all over the
+          world, with a focus on traditional{" "}
+          <span className="font-bold">Canadian recipes</span> like
+          <span className="text-blue-500 font-medium"> Poutine</span>,{" "}
+          <span className="text-blue-500 font-medium">Butter Tarts</span>, and{" "}
+          <span className="text-blue-500 font-medium">Nanaimo Bars</span>.
         </p>
 
         <p className="text-lg  text-gray-700 mb-6">
-          Whether you're a beginner or an experienced cook, FlavorMate makes meal discovery fun, simple,
-          and exciting. You can browse meals, check ingredients, and cook like a pro with our clean and
-          easy-to-follow interface.
+          Whether you're a beginner or an experienced cook, FlavorMate makes
+          meal discovery fun, simple, and exciting. You can browse meals, check
+          ingredients, and cook like a pro with our clean and easy-to-follow
+          interface.
         </p>
 
         <p className="text-lg  text-gray-700 mb-6">
-          We believe that food is not just for eating – it’s a way to connect, celebrate cultures, and create memories.
-          That’s why we bring you authentic flavors right from your browser. 🍁
+          We believe that food is not just for eating - it's a way to connect,
+          celebrate cultures, and create memories. That's why we bring you
+          authentic flavors right from your browser. 🍁
         </p>
-
-        
       </div>
     </div>
   );

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Link, NavLink } from "react-router"; 
+import { Link, NavLink, useNavigate } from "react-router";
 import logo1 from "../Images/logo1.webp";
 
 const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const userData = localStorage.getItem("userData");
@@ -13,12 +14,13 @@ const Navbar = () => {
   }, []);
 
   const handleLogout = () => {
-    localStorage.removeItem("userData");
     setIsLoggedIn(false);
+
+    navigate("/login");
   };
 
   return (
-    <div className="bg-black h-20 fixed top-0 w-screen z-50">
+    <div className="bg-black h-20 fixed top-0 w-screen z-50 ">
       <div className="flex items-center justify-between px-4 md:px-10 h-full">
         <img
           src={logo1}
@@ -26,8 +28,7 @@ const Navbar = () => {
           className="h-16 rounded-full bg-amber-200"
         />
 
-        
-        <ul className="hidden md:flex items-center gap-6 text-2xl text-white">
+        <ul className="hidden md:flex items-center gap-6 text-2xl text-white font-bold uppercase  ">
           <li>
             <Link to="/">Home</Link>
           </li>
@@ -42,7 +43,7 @@ const Navbar = () => {
           </li>
         </ul>
 
-        <ul className="flex gap-6 text-2xl text-white">
+        <ul className="flex gap-6 text-2xl text-white ">
           {!isLoggedIn ? (
             <>
               <li>
@@ -53,12 +54,22 @@ const Navbar = () => {
               </li>
             </>
           ) : (
-            <div>
-              <li className="flex gap-4 items-center">
-                <NavLink to="profile" className=" hover:bg-gray-600 p-2 rounded-xl">Profile</NavLink>
-                <button onClick={handleLogout} className=" hover:bg-gray-600 p-2 rounded-xl">Logout</button>
+            <>
+              <li className="flex gap-4  ">
+                <NavLink
+                  to="/profile"
+                  className=" hover:bg-gray-600 p-2 rounded-xl"
+                >
+                  Profile
+                </NavLink>
+                <button
+                  onClick={handleLogout}
+                  className=" hover:bg-gray-600 p-2 rounded-xl"
+                >
+                  Logout
+                </button>
               </li>
-            </div>
+            </>
           )}
         </ul>
       </div>
