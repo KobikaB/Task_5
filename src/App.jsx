@@ -1,12 +1,11 @@
-import React from "react"
-import  { lazy, Suspense, useState, useEffect } from "react";
-import { createBrowserRouter, RouterProvider, Route } from "react-router"; 
-import { createRoutesFromElements } from "react-router"; 
+import React from "react";
+import { lazy, Suspense, useState, useEffect } from "react";
+import { createBrowserRouter, RouterProvider, Route } from "react-router";
+import { createRoutesFromElements } from "react-router";
 import NotFound from "./pages/NotFound";
 import Rootlayout from "./layout/Rootlayout";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Profile from "./pages/Profile";
-
 
 const Home = lazy(() => import("./pages/Home"));
 const About = lazy(() => import("./pages/About"));
@@ -41,7 +40,6 @@ const App = () => {
           </Route>
         </Route>
 
-       
         <Route
           path="login"
           element={
