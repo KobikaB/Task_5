@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 
-import MealModal from "./MealModal";
 import Mealdetailp from "./Mealdetailp";
 
 const MenuDetail = () => {
@@ -10,7 +9,11 @@ const MenuDetail = () => {
   useEffect(() => {
     fetch("https://www.themealdb.com/api/json/v1/1/filter.php?a=Canadian")
       .then((res) => res.json())
-      .then((data) => setMeals(data.meals));
+      .then((data) => {
+        console.log(data);
+        setMeals(data.meals);
+      })
+      .catch((error) => console.error("API Error:", error));
   }, []);
 
   return (
@@ -18,11 +21,9 @@ const MenuDetail = () => {
       <h1 className="text-4xl font-bold text-center mb-8">All Menu Items</h1>
       <div className="flex flex-wrap justify-center gap-6">
         {meals.map((meal) => (
-          <Mealdetailp key={meal.idMeal} meal={meal} onView={setSelectedMeal} />
+          <Mealdetailp key={meal.idMeal} meal={meal} />
         ))}
       </div>
-
-      <MealModal meal={selectedMeal} onClose={() => setSelectedMeal(null)} />
     </div>
   );
 };

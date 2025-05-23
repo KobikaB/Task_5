@@ -6,6 +6,7 @@ import NotFound from "./pages/NotFound";
 import Rootlayout from "./layout/Rootlayout";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Profile from "./pages/Profile";
+import MenuItemDetail from "./pages/MenuItemDetail";
 
 const Home = lazy(() => import("./pages/Home"));
 const About = lazy(() => import("./pages/About"));
@@ -13,7 +14,7 @@ const Blog = lazy(() => import("./pages/Blog"));
 const Menu = lazy(() => import("./pages/Menu"));
 const Login = lazy(() => import("./pages/Login"));
 const Register = lazy(() => import("./pages/Register"));
-const Menudetail = lazy(() => import("./pages/Menudetail"));
+const Menudetail = lazy(() => import("./pages/MenuDetail"));
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -35,7 +36,8 @@ const App = () => {
             <Route path="blog" element={<Blog />} />
             <Route path="menu">
               <Route index element={<Menu />} />
-              <Route path=":id" element={<Menudetail />} />
+
+              <Route path=":id" element={<MenuItemDetail />} />
             </Route>
           </Route>
         </Route>

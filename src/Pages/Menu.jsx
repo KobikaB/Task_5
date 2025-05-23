@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router";
+import MenuDetail from "./MenuDetail";
 
 const Menu = () => {
   return (
@@ -21,16 +22,7 @@ const Menu = () => {
         </p>
       </div>
 
-      <ul className="flex flex-col items-center font-semibold mb-10 w-full max-w-lg px-4">
-        <li>
-          <Link
-            to="1"
-            className="block w-full bg-white text-blue-500 hover:text-white hover:bg-blue-600 transition-colors duration-300 p-4 sm:p-5 rounded-xl shadow-md text-center text-lg sm:text-xl font-semibold"
-          >
-            All Menu Details
-          </Link>
-        </li>
-      </ul>
+      <MenuDetail />
     </div>
   );
 };

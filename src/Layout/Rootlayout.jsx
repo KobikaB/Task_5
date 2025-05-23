@@ -2,12 +2,13 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import { Outlet } from "react-router";
 
-const Rootlayout = ({isLoggedIn}) => {
+const Rootlayout = () => {
   return (
-    <div>
-      <Navbar isLoggedIn={isLoggedIn} />
+    <>
+      <Navbar />
+
       <Outlet />
-    </div>
+    </>
   );
 };
 

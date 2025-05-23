@@ -34,9 +34,9 @@ const Register = () => {
   };
 
   return (
-    <div className="w-screen h-screen flex flex-col md:flex-row">
+    <div className="min-h-screen flex ">
       <div
-        className="hidden md:block md:w-1/2 h-full bg-cover bg-center"
+        className="hidden md:block md:w-1/2 h-auto bg-cover bg-center object-cover "
         style={{ backgroundImage: "url('./src/Images/i5.avif')" }}
       >
         <h1 className="text-white font-bold text-3xl text-center mt-40">
@@ -50,14 +50,14 @@ const Register = () => {
         </p>
       </div>
 
-      <div className="w-full md:w-1/2 h-full bg-gray-400 flex justify-center items-center bg-cover bg-center">
-        <div className="bg-white w-7/12 md:w-8/12 lg:w-9/12  p-6 rounded-3xl shadow h-auto max-h-full">
+      <div className="w-full  md:w-1/2  flex items-center justify-center bg-gray-400 p-4 bg-cover bg-center ">
+        <div className="bg-white w-full max-w-md  p-4 rounded-3xl shadow-2xl">
           <h2 className="text-3xl font-bold text-center mt-4">Register</h2>
           <form
             className="flex flex-col items-center gap-5"
             onSubmit={handleSubmit}
           >
-            <div className="flex flex-col gap-3 mt-10 w-full">
+            <div className="flex flex-col gap-3 mt-6 w-full  ">
               <div className="grid grid-cols-2 gap-5">
                 <input
                   type="text"
@@ -67,7 +67,7 @@ const Register = () => {
                   onChange={handleChange}
                   pattern="[A-Za-z]+"
                   title="Only letters allowed"
-                  className="p-2 border-2 rounded block w-full"
+                  className="p-2 border-2 rounded block w-full sm:text-sm "
                   required
                 />
                 <input
@@ -78,7 +78,7 @@ const Register = () => {
                   pattern="[A-Za-z]+"
                   title="Only letters allowed"
                   onChange={handleChange}
-                  className="p-2 border-2 rounded block w-full"
+                  className="p-2 border-2 rounded block w-full sm:text-sm"
                   required
                 />
               </div>
@@ -116,14 +116,14 @@ const Register = () => {
             </div>
             <button
               type="submit"
-              className="bg-blue-600 text-white py-3 px-6 rounded hover:bg-blue-400"
+              className="bg-blue-600 text-white py-3 px-6 rounded hover:bg-blue-400 "
             >
               Register
             </button>
           </form>
           <p className="mt-4 text-center">
             Already have an account?
-            <Link to="/login" className="text-blue-600 hover:underline ml-1">
+            <Link to="/login" className="text-blue-600 hover:underline  ml-1">
               Login
             </Link>
           </p>

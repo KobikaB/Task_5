@@ -18,6 +18,8 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setNameError("");
+    setPasswordError("");
 
     let isValid = true;
 
@@ -28,13 +30,7 @@ const Login = () => {
       return;
     }
 
-    if (formData.name.trim() === "") {
-      setNameError("Name is required");
-      isValid = false;
-    }
-
     if (formData.password.length < 8) {
-      setPasswordError("Password must be a minimum of 8 characters");
       toast.error("Password too short, not submitted");
       isValid = false;
     }
@@ -44,78 +40,73 @@ const Login = () => {
       (formData.name !== storedData.Fname ||
         formData.password !== storedData.password)
     ) {
-      toast.error("No user registered!");
+      toast.error("Invalid credentials!");
       return;
     }
 
     if (isValid) {
       localStorage.setItem("isLoggedIn", "true");
       toast.success("Login successful");
-
       setTimeout(() => {
         navigate("/");
-      }, [1500]);
+      }, 1500);
     }
   };
 
   return (
-    <div className="w-screen h-screen flex flex-col  md:flex-row ">
-      <div className="w-full md:w-1/2 h-full bg-gray-400 flex justify-center items-center bg-cover bg-center">
-        <div className="bg-white w-7/12 md:w-6/12  p-6 rounded-3xl shadow-2xl h-auto max-h-full">
-          <h1 className="text-center  text-2xl font-bold">Login</h1>
+    <div className="min-h-screen flex ">
+      <div className="w-full  md:w-1/2  flex items-center justify-center bg-gray-400 p-4 bg-cover bg-center">
+        <div className="bg-white w-full max-w-md  p-4 rounded-3xl shadow-2xl">
+          <h1 className="text-center text-2xl font-bold">Login</h1>
           <img
-            src="/src/Images/avat.png"
+            src="/src/images/avat.png"
             alt="logo"
-            className="w-20 h-20 mx-auto mt-1"
+            className="w-20 h-20 mx-auto mt-2"
           />
 
           <form
             onSubmit={handleSubmit}
-            className="flex flex-col items-center gap-3"
+            className="flex flex-col justify-center gap-3  mt-4"
           >
-            <label className="block  w-full">Name</label>
-            <input
-              type="text"
-              name="name"
-              placeholder="Enter your name"
-              value={formData.name}
-              onChange={handleChange}
-              pattern="[A-Za-z]+"
-              title="Only letters allowed"
-              className="p-2 border-2  rounded block w-full "
-              required
-            />
+            <>
+              <label className="block">Name</label>
+              <input
+                type="text"
+                name="name"
+                placeholder="Enter your name"
+                value={formData.name}
+                onChange={handleChange}
+                pattern="[A-Za-z]+"
+                title="Only letters allowed"
+                className="p-2 block border-2 rounded w-full"
+                required
+              />
+            </>
 
-            {nameError && (
-                <p className="text-red-600 text-sm mt-1">{nameError}</p>
-              )}
-
-            <label className="block w-full">Password</label>
-            <input
-              type="password"
-              name="password"
-              placeholder="Enter your password"
-              pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
-              title="Must contain at least 8 characters, one uppercase, one lowercase, one number and one special character"
-              className="p-2 border-2 rounded block w-full"
-              value={formData.password}
-              onChange={handleChange}
-            />
-
-            {passwordError && (
-                <p className="text-red-600 text-sm mt-1">{passwordError}</p>
-              )}
-
-            <div className="flex justify-center ">
+            <>
+              <label className="block">Password</label>
+              <input
+                type="password"
+                name="password"
+                placeholder="Enter your password"
+                pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+                title="Min 8 chars, 1 uppercase, 1 lowercase, 1 number, 1 special"
+                className="p-2 border-2 rounded block w-full"
+                value={formData.password}
+                onChange={handleChange}
+              />
+            </>
+            <div className="flex justify-center mt-4">
               <button
-                className="p-3 my-2 bg-gray-300 rounded-xl hover:bg-gray-500 text-cyan-900"
                 type="submit"
+                className="bg-blue-600 text-white py-3 px-3 rounded hover:bg-blue-400 w-full max-w-[100px] "
               >
-                Submit
+                Login
               </button>
             </div>
           </form>
-          <p className=" text-center ">
+
+          <p className="text-center text-sm mt-4">
             If you don't have an account?
             <Link to="/register" className="text-blue-600 hover:underline ml-1">
               Register
@@ -125,7 +116,7 @@ const Login = () => {
       </div>
 
       <div
-        className="hidden md:block md:w-1/2 h-full bg-cover bg-center"
+        className="hidden md:block md:w-1/2 bg-cover bg-center"
         style={{ backgroundImage: "url('./src/Images/i5.jpg')" }}
       ></div>
 
