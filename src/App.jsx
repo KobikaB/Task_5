@@ -14,7 +14,7 @@ const Blog = lazy(() => import("./pages/Blog"));
 const Menu = lazy(() => import("./pages/Menu"));
 const Login = lazy(() => import("./pages/Login"));
 const Register = lazy(() => import("./pages/Register"));
-const Menudetail = lazy(() => import("./pages/MenuDetail"));
+
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);

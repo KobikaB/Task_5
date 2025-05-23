@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router";
-import MenuDetail from "./MenuDetail";
+import MenuDetail from "./Menudetail";
+
 
 const Menu = () => {
   return (
