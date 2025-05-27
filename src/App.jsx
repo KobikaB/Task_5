@@ -24,6 +24,7 @@ const App = () => {
     if (userData) {
       setIsLoggedIn(true);
     }
+    
   }, []);
 
   const router = createBrowserRouter(

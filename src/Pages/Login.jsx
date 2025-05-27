@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router";
 import { toast, ToastContainer } from "react-toastify";
+import bcrypt from "bcryptjs";
 
 const Login = () => {
   const navigate = useNavigate();
 
-  const [nameError, setNameError] = useState("");
-  const [passwordError, setPasswordError] = useState("");
+  // const [nameError, setNameError] = useState("");
+  // const [passwordError, setPasswordError] = useState("");
   const [formData, setFormData] = useState({
-    name: "",
+    email: "",
     password: "",
   });
 
@@ -18,10 +19,6 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setNameError("");
-    setPasswordError("");
-
-    let isValid = true;
 
     const storedData = JSON.parse(localStorage.getItem("userData"));
 
@@ -30,27 +27,36 @@ const Login = () => {
       return;
     }
 
-    if (formData.password.length < 8) {
-      toast.error("Password too short, not submitted");
-      isValid = false;
-    }
+    const isEmailCorrect = formData.email === storedData.email;
+    const isPasswordCorrect = bcrypt.compareSync(
+      formData.password,
+      storedData.password
+    );
 
-    if (
-      isValid &&
-      (formData.name !== storedData.Fname ||
-        formData.password !== storedData.password)
-    ) {
-      toast.error("Invalid credentials!");
+    if (!isEmailCorrect || !isPasswordCorrect) {
+      toast.error("Invalid credentials");
       return;
     }
 
-    if (isValid) {
-      localStorage.setItem("isLoggedIn", "true");
-      toast.success("Login successful");
-      setTimeout(() => {
-        navigate("/");
-      }, 1500);
+    if (formData.password.length < 8) {
+      toast.error("Password too short");
+      isValid = false;
     }
+
+    if (formData.email !== storedData.email) {
+      toast.error("Invalid Email!");
+      return;
+    }
+
+    if (!isEmailCorrect || !isPasswordCorrect) {
+      toast.error("Invalid credentials");
+      return;
+    }
+
+    toast.success("Login successful");
+    setTimeout(() => {
+      navigate("/");
+    }, 1500);
   };
 
   return (
@@ -64,27 +70,21 @@ const Login = () => {
             className="w-20 h-20 mx-auto mt-2"
           />
 
-          <form
-            onSubmit={handleSubmit}
-            className="flex flex-col justify-center gap-3  mt-4"
-          >
+          <form onSubmit={handleSubmit} className="flex flex-col  gap-3  mt-4">
             <>
-              <label className="block">Name</label>
+              <label>Email</label>
               <input
-                type="text"
-                name="name"
-                placeholder="Enter your name"
-                value={formData.name}
+                type="email"
+                name="email"
+                placeholder="Enter your Email"
+                value={formData.email}
                 onChange={handleChange}
-                pattern="[A-Za-z]+"
-                title="Only letters allowed"
-                className="p-2 block border-2 rounded w-full"
-                required
+                className="p-2 border-2 rounded block w-full"
               />
             </>
 
             <>
-              <label className="block">Password</label>
+              <label>Password</label>
               <input
                 type="password"
                 name="password"
@@ -116,8 +116,8 @@ const Login = () => {
       </div>
 
       <div
-        className="hidden md:block md:w-1/2 bg-cover bg-center"
-        style={{ backgroundImage: "url('./src/Images/i5.jpg')" }}
+        className="hidden md:block md:w-1/2 bg-cover bg-center  "
+        style={{ backgroundImage: "url('./src/Images/i4.jpeg')" }}
       ></div>
 
       <ToastContainer />

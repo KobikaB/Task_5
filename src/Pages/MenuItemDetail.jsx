@@ -1,7 +1,7 @@
 import { useParams } from "react-router";
 import { useEffect, useState } from "react";
 
-const MealDetail = () => {
+const MenuItemDetail = () => {
   const { id } = useParams();
   const [meal, setMeal] = useState(null);
 
@@ -35,8 +35,8 @@ const MealDetail = () => {
 
       <h2 className="text-2xl font-semibold mt-4 ">Ingredients</h2>
       <ul className="list-disc list-inside mb-4">
-        {ingredientsWithMeasures.map((item, index) => (
-          <li key={index}>{item}</li>
+        {ingredientsWithMeasures.map((item) => (
+          <li>{item}</li>
         ))}
       </ul>
 
@@ -45,13 +45,15 @@ const MealDetail = () => {
 
       {meal.strYoutube && (
         <div className="mt-6">
-          <h2 className="text-2xl font-semibold mb-2">Watch on YouTube</h2>
+          <h2 className="text-2xl font-semibold mb-2 sm:w-50 md:w-[80%]">Watch on YouTube</h2>
           <iframe
-            className="w-full h-64"
+            className="w-full h-auto"
             src={`https://www.youtube.com/embed/${
               meal.strYoutube.split("=")[1]
+
             }`}
             title="YouTube video player"
+            allowFullScreen
           ></iframe>
         </div>
       )}
@@ -59,4 +61,4 @@ const MealDetail = () => {
   );
 };
 
-export default MealDetail;
+export default MenuItemDetail;

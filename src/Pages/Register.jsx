@@ -1,19 +1,23 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { toast, ToastContainer } from "react-toastify";
+import bcrypt from "bcryptjs";
 
 const Register = () => {
   const navigate = useNavigate(); // Redirect
   const [formData, setFormData] = useState({
     Fname: "",
-    Sname: "",
+    Lname: "",
     email: "",
     password: "",
     confirmPassword: "",
   });
 
+  const saltRounds = 10;
+
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = (e) => {
@@ -24,7 +28,16 @@ const Register = () => {
       return;
     }
 
-    localStorage.setItem("userData", JSON.stringify(formData));
+    const hashedPassword = bcrypt.hashSync(formData.password, saltRounds);
+
+    const userData = {
+      Fname: formData.Fname,
+      Lname: formData.Lname,
+      email: formData.email,
+      password: hashedPassword,
+    };
+
+    localStorage.setItem("userData", JSON.stringify(userData));
 
     toast.success("Registration successful!");
 
@@ -36,7 +49,7 @@ const Register = () => {
   return (
     <div className="min-h-screen flex ">
       <div
-        className="hidden md:block md:w-1/2 h-auto bg-cover bg-center object-cover "
+        className="hidden md:block md:w-1/2 h-auto  bg-center object-cover bg-cover "
         style={{ backgroundImage: "url('./src/Images/i5.avif')" }}
       >
         <h1 className="text-white font-bold text-3xl text-center mt-40">
@@ -58,7 +71,7 @@ const Register = () => {
             onSubmit={handleSubmit}
           >
             <div className="flex flex-col gap-3 mt-6 w-full  ">
-              <div className="grid grid-cols-2 gap-5">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5 ">
                 <input
                   type="text"
                   name="Fname"
@@ -68,18 +81,16 @@ const Register = () => {
                   pattern="[A-Za-z]+"
                   title="Only letters allowed"
                   className="p-2 border-2 rounded block w-full sm:text-sm "
-                  required
                 />
                 <input
                   type="text"
-                  name="Sname"
-                  placeholder="Surname"
-                  value={formData.Sname}
+                  name="Lname"
+                  placeholder="Lastname"
+                  value={formData.Lname}
                   pattern="[A-Za-z]+"
                   title="Only letters allowed"
                   onChange={handleChange}
                   className="p-2 border-2 rounded block w-full sm:text-sm"
-                  required
                 />
               </div>
               <input
@@ -89,7 +100,6 @@ const Register = () => {
                 value={formData.email}
                 onChange={handleChange}
                 className="p-2 border-2 rounded block w-full"
-                required
               />
               <input
                 type="password"
@@ -100,7 +110,6 @@ const Register = () => {
                 title="Must contain at least 8 characters, one uppercase, one lowercase, one number and one special character"
                 onChange={handleChange}
                 className="p-2 border-2 rounded block  w-full"
-                required
               />
               <input
                 type="password"
@@ -111,7 +120,6 @@ const Register = () => {
                 title="Must contain at least 8 characters, one uppercase, one lowercase, one number and one special character"
                 onChange={handleChange}
                 className="p-2 border-2 rounded block  w-full"
-                required
               />
             </div>
             <button

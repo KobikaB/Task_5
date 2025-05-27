@@ -5,9 +5,9 @@ import MenuDetail from "./Menudetail";
 
 const Menu = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-300 to-blue-400 flex flex-col items-center mt-15 py-10 px-4">
+    <div className="min-h-screen bg-gradient-to-b from-blue-200 to-blue-400 flex flex-col items-center mt-15 py-10 px-4">
       <img
-        src="./src/images/menubg.jpg"
+        src="./src/images/menubg1.jpg"
         alt=" food"
         className="rounded-xl shadow-lg object-cover w-full max-w-5xl h-48 sm:h-72 md:h-96"
       />
@@ -16,11 +16,7 @@ const Menu = () => {
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-4 ">
           Welcome to Our Menu Page
         </h1>
-        <p className="text-white sm:text-lg max-w-2xl mx-auto ">
-          Explore our carefully curated menus that offer a wide variety of
-          delicious options. Click on "All Menu Details" to dive deep into our
-          selections and find your perfect dish!
-        </p>
+       
       </div>
 
       <MenuDetail />

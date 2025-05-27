@@ -5,7 +5,7 @@ const About = () => {
     <div className="h-screen  bg-blue-300  w-screen ">
       <div className="max-w-3xl mx-auto bg-blue-300  shadow-2xl rounded-2xl p-6 ">
         <h1 className="text-5xl font-extrabold text-center mb-8 mt-30 text-blue-800">
-          {" "}
+         
           About FlavorMate
         </h1>
 

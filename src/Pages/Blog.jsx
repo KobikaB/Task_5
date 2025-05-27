@@ -38,7 +38,7 @@ const Blog = () => {
         {blogPosts.map((post, index) => (
           <div
             key={index}
-            className="bg-white border border-blue-200 hover:shadow-xl transition-shadow duration-300 rounded-2xl p-6 w-full sm:w-[45%] lg:w-[30%] text-left"
+            className="bg-white border border-blue-200 hover:shadow-xl  rounded-2xl p-6 w-full sm:w-[45%] lg:w-[30%] text-left"
           >
             <h2 className="text-xl font-bold text-blue-700 mb-2">
               {post.title}
