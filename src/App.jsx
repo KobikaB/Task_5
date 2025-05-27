@@ -15,7 +15,6 @@ const Menu = lazy(() => import("./pages/Menu"));
 const Login = lazy(() => import("./pages/Login"));
 const Register = lazy(() => import("./pages/Register"));
 
-
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -24,7 +23,6 @@ const App = () => {
     if (userData) {
       setIsLoggedIn(true);
     }
-    
   }, []);
 
   const router = createBrowserRouter(

@@ -61,7 +61,10 @@ const Profile = () => {
     <div className="min-h-screen bg-gray-300 flex justify-center items-center px-4">
       <div className="w-full max-w-3xl bg-white rounded-xl shadow-lg p-8">
         <div className="flex flex-col md:flex-row items-center gap-8 border-b pb-6">
-          <div className="relative group cursor-pointer" onClick={handleAvatarClick}>
+          <div
+            className="relative group cursor-pointer"
+            onClick={handleAvatarClick}
+          >
             <img
               src={profile.avatar}
               alt="Avatar"
@@ -82,7 +85,9 @@ const Profile = () => {
           <div className="flex-1">
             {!editMode ? (
               <>
-                <h2 className="text-3xl font-bold text-gray-800">{profile.name}</h2>
+                <h2 className="text-3xl font-bold text-gray-800">
+                  {profile.name}
+                </h2>
                 <p className="text-gray-500 text-lg mt-1">{profile.email}</p>
                 <div className="flex gap-4 mt-5">
                   <button

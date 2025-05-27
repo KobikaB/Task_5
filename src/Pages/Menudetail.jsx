@@ -20,7 +20,7 @@ const MenuDetail = () => {
     <div className="min-h-screen bg-gradient-to-br from-blue-400 to-white p-6">
       <h1 className="text-4xl font-bold text-center mb-8">All Menu Items</h1>
       <div className="flex flex-wrap justify-center gap-6">
- {meals.map((meal) => (
+        {meals.map((meal) => (
           <Mealdetailp key={meal.idMeal} meal={meal} />
         ))}
       </div>

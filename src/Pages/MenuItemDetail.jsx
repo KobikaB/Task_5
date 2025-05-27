@@ -45,12 +45,13 @@ const MenuItemDetail = () => {
 
       {meal.strYoutube && (
         <div className="mt-6">
-          <h2 className="text-2xl font-semibold mb-2 sm:w-50 md:w-[80%]">Watch on YouTube</h2>
+          <h2 className="text-2xl font-semibold mb-2 sm:w-50 md:w-[80%]">
+            Watch on YouTube
+          </h2>
           <iframe
             className="w-full h-auto"
             src={`https://www.youtube.com/embed/${
               meal.strYoutube.split("=")[1]
-
             }`}
             title="YouTube video player"
             allowFullScreen
